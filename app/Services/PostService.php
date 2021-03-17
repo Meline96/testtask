@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Repositories\PostRepository;
-use Illuminate\Http\Request;
 
 class PostService
 {
@@ -18,26 +17,26 @@ class PostService
         return $this->post->all();
     }
 
-    public function update(Request $request, $id)
+    public function update($params, $id)
     {
-        $attributes = $request->all();
+        $attributes = $params->all();
 
-        return $this->post->update($id, $attributes);
+        return $this->post->update($attributes, $id);
     }
 
-    public function create(Request $request)
+    public function create($params)
     {
-        $attributes = $request->all();
+        $attributes = $params->all();
 
-        if ($request->has('file')) {
-            $name = $this->post->uploadFile($request->file);
+        if ($params->has('file')) {
+            $name = $this->post->uploadFile($params->file);
             $attributes['photo'] = $name;
         }
 
         $post = $this->post->create($attributes);
 
-        if ($request->has('category_id')) {
-            $this->post->addCategories($request->get('category_id', []), $post->id);
+        if ($params->has('category_id')) {
+            $this->post->addCategories($params->get('category_id', []), $post->id);
         }
     }
 }

@@ -4,56 +4,20 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use App\Models\Post;
-use Facade\FlareClient\Http\Response;
-use Faker\Provider\Image;
-use Illuminate\Support\Facades\Storage;
 
-class PostRepository
+class PostRepository extends Repository
 {
-
-    protected $post;
-    protected $category;
+    /**
+     * @var $model
+     * @var $categoryModel
+     */
+    protected $model;
+    protected $categoryModel;
 
     public function __construct(Post $post, Category $category)
     {
-        $this->post = $post;
-        $this->category = $category;
-    }
-
-    /**
-     * @param $attributes
-     * @return mixed
-     */
-    public function create($attributes)
-    {
-        return $this->post->create($attributes);
-    }
-
-    /**
-     * @return Post[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function all()
-    {
-        return $this->post->all();
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function find($id)
-    {
-        return $this->post->find($id);
-    }
-
-    /**
-     * @param $id
-     * @param array $attributes
-     * @return mixed
-     */
-    public function update($id, array $attributes)
-    {
-        return $this->post->find($id)->update($attributes);
+        $this->model = $post;
+        $this->categoryModel = $category;
     }
 
     /**
@@ -75,8 +39,7 @@ class PostRepository
      */
     public function addCategories($categories, $id)
     {
-        $post = $this->post->find($id);
-
+        $post = $this->model->find($id);
         $post->categories()->sync($categories);
     }
 }

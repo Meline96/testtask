@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
 
 class CategoryService
 {
@@ -30,12 +29,12 @@ class CategoryService
     }
 
     /**
-     * @param Request $request
+     * @param $params
      * @return mixed
      */
-    public function create(Request $request)
+    public function create($params)
     {
-        $attributes = $request->all();
+        $attributes = $params->all();
 
         return $this->category->create($attributes);
     }
