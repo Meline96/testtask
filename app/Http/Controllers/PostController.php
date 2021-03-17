@@ -34,8 +34,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postService->index();
+        $categories = $this->categoryService->get();
 
-        return view('post.index', compact('posts'));
+        return view('post.index', compact('posts', 'categories'));
     }
 
     public function create()
@@ -50,5 +51,18 @@ class PostController extends Controller
         $this->postService->create($request);
 
         return redirect(route('posts.index'));
+    }
+
+    public function search(Request $request)
+    {
+        $categoryId = $request->category_id;
+
+        $posts = $this->postService->search($categoryId);
+
+        $returnHTML = view('post/list', [
+            'posts' => $posts
+        ])->render();
+
+        return response()->json(['success' => true, 'html' => $returnHTML]);
     }
 }

@@ -42,4 +42,19 @@ class PostRepository extends Repository
         $post = $this->model->find($id);
         $post->categories()->sync($categories);
     }
+
+    public function searchByCategory($categoryId)
+    {
+        $result = $this->model->whereHas(
+            'categories',
+            function ($q) use ($categoryId) {
+                $q
+                    ->where('categories.id', $categoryId)
+                    ->orWhere('categories.parent_id', $categoryId)
+                ;
+            }
+        )->get();
+
+        return $result;
+    }
 }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
 Route::resource('posts', App\Http\Controllers\PostController::class);
 Route::resource('categories', App\Http\Controllers\CategoriesController::class);
+Route::get('/posts-search', [App\Http\Controllers\PostController::class, 'search'])->name('posts.search');
 
 Auth::routes();
 

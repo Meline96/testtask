@@ -39,4 +39,9 @@ class PostService
             $this->post->addCategories($params->get('category_id', []), $post->id);
         }
     }
+
+    public function search($params)
+    {
+        return $this->post->searchByCategory($params);
+    }
 }
