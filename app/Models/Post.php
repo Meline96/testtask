@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -12,9 +13,12 @@ class Post extends Model
         'photo',
     ];
 
+    const ACTIVE = 1;
+    const INACTIVE = 0;
+
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'post_id');
+        return $this->hasMany(Comment::class, 'post_id');
     }
 
     public function categories()
@@ -30,5 +34,18 @@ class Post extends Model
         {
             return implode( ", ", $categories->pluck('title')->all() );
         }
+    }
+
+    public function votedUsers()
+    {
+        return $this->belongsToMany(User::class, 'likes')
+            ->wherePivot('is_dislike', self::INACTIVE);
+    }
+
+    public function isLiked()
+    {
+        $userId = Auth::user()->id;
+
+        return $this->votedUsers->find($userId);
     }
 }

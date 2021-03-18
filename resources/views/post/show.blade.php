@@ -23,10 +23,41 @@
                         </div>
                         <div>
                             <strong>Categories:</strong> {{ $post->categoriesNames() }}
+                            <div class="float-sm-right">
+                                @if($post->isLiked())
+                                    <a class="like-button liked" href="{{ route('post.removeLike', $post->id) }}">LIKED</a>
+                                @else
+                                    <a class="like-button not-liked" href="{{ route('post.addLike', $post->id) }}">LIKE</a>
+                                @endif
+                            </div>
                         </div>
                     </div>
+
+                    @if ($post->comments)
+                        @include('post.comments', ['comments' => $post->comments])
+                    @endif
+
                     <div class="list-group-item">
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('posts.comment') }}">
+                            <div class="form-group">
+                                <label for="replyFormComment">Add comment</label>
+                                <textarea class="form-control" name="body" rows="5"></textarea>
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button class="btn btn-info btn-md float-sm-right" type="submit">Add</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

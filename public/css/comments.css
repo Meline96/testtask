@@ -1,0 +1,53 @@
+.addtxt {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 13px;
+    background-color: #e5e8ed;
+    font-weight: 500
+}
+
+.second {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 9px 9px 8px #e4e4e4;
+}
+
+.text1 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #56575b
+}
+
+.list-group-comment {
+    background: #f6f6f6;
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.text2 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #56575b
+}
+
+.like-button {
+    font-weight: 600;
+}
+
+.like-button:hover {
+    text-decoration: unset;
+    color: unset;
+}
+
+.not-liked {
+    color: #38404a;
+}
+
+.liked {
+    color: green;
+}

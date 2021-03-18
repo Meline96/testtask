@@ -17,6 +17,9 @@ Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
 Route::resource('posts', App\Http\Controllers\PostController::class);
 Route::resource('categories', App\Http\Controllers\CategoriesController::class);
 Route::get('/posts-search', [App\Http\Controllers\PostController::class, 'search'])->name('posts.search');
+Route::get('/post-comment', [App\Http\Controllers\PostController::class, 'addComment'])->name('posts.comment');
+Route::get('/post-like/{postId}', [App\Http\Controllers\PostController::class, 'addLike'])->name('post.addLike');
+Route::get('/post-remove-like/{postId}', [App\Http\Controllers\PostController::class, 'removeLike'])->name('post.removeLike');
 
 Auth::routes();
 

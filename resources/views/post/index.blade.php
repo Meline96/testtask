@@ -22,9 +22,9 @@
                         </div>
                     </form>
                     @endif
-                        <div class="post-content">
-                            @include('post.list', ['posts' => $posts])
-                        </div>
+                    <div class="post-content">
+                        @include('post.list', ['posts' => $posts])
+                    </div>
                 @endif
             </div>
         </div>
