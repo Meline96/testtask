@@ -26,9 +26,11 @@
                 <a class="navbar-brand" href="{{ route('posts.index') }}">
                     {{ config('app.name', 'Blog') }}
                 </a>
-                <a class="navbar-brand" href="{{ route('categories.index') }}">
-                    Categories
-                </a>
+                @if(Auth::guard()->check())
+                    <a class="navbar-brand" href="{{ route('categories.index') }}">
+                        Categories
+                    </a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

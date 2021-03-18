@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
-use App\Models\Post;
 use App\Services\CategoryService;
-use Illuminate\Http\Request;
-use PhpParser\Node\Expr\New_;
 
 class CategoriesController extends Controller
 {

@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes')->withPivot('is_dislike');
     }
+
+    public function isAdmin(){
+        return $this->role == self::ADMIN;
+    }
 }
