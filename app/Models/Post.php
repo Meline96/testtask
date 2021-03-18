@@ -21,4 +21,14 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class, 'posts_categories');
     }
+
+    public function categoriesNames()
+    {
+        $categories = $this->categories();
+
+        if ($categories)
+        {
+            return implode( ", ", $categories->pluck('title')->all() );
+        }
+    }
 }

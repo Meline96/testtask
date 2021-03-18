@@ -53,6 +53,13 @@ class PostController extends Controller
         return redirect(route('posts.index'));
     }
 
+    public function show($id)
+    {
+        $post = $this->postService->find($id);
+
+        return view('post.show', compact('post'));
+    }
+
     public function search(Request $request)
     {
         $categoryId = $request->category_id;

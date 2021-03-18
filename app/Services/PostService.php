@@ -17,6 +17,11 @@ class PostService
         return $this->post->all();
     }
 
+    public function find($id)
+    {
+        return $this->post->find($id);
+    }
+
     public function update($params, $id)
     {
         $attributes = $params->all();

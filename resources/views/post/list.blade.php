@@ -2,7 +2,7 @@
     @foreach( $posts as $post )
         <div class="list-group mt-3 mb-3">
             <div class="list-group-item">
-                <h3>{{ $post->name }}</h3>
+                <a href="{{ route('posts.show', $post->id) }}"><h3>{{ $post->name }}</h3></a>
                 @if($post->photo)
                     <div>
                         <img width="200px" src="{{url('/images/'.$post->photo)}}" alt="">
