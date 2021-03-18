@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -33,7 +35,7 @@
                         </div>
                     </div>
 
-                    @if ($post->comments)
+                    @if ($post->comments->isNotEmpty())
                         @include('post.comments', ['comments' => $post->comments])
                     @endif
 

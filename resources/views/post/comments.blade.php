@@ -1,5 +1,3 @@
-<link href="{{ asset('css/comments.css') }}" rel="stylesheet">
-
 <div class="list-group-comment mb-3 mt-3">
     <label for="replyFormComment">Comments</label>
     @foreach($comments as $comment)

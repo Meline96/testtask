@@ -16,19 +16,19 @@
                 <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <input required="required" value="{{ old('name') }}" placeholder="Enter title here" type="text" name="name" class="form-control" />
+                        <input value="{{ old('name') }}" placeholder="Enter title here" type="text" name="name" class="form-control" />
                     </div>
                     <div class="form-group">
                         <textarea name='description'class="form-control">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" name="category_id[]" id="" multiple>
-                            @if($categories->isNotEmpty())
+                        @if($categories->isNotEmpty())
+                            <select class="form-control" name="category_id[]" id="" multiple>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
-                            @endif
-                        </select>
+                            </select>
+                        @endif
                     </div>
                     <input type="file" name="file" class="d-block mb-5">
                     <input type="submit" name='publish' class="btn btn-success" value = "Publish"/>
