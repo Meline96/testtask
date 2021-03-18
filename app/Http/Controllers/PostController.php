@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\PostRequest;
-use App\Models\Post;
-use App\Models\User;
 use App\Services\CategoryService;
 use App\Services\CommentService;
 use App\Services\PostService;

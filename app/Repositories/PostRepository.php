@@ -48,12 +48,19 @@ class PostRepository extends Repository
         $result = $this->model->whereHas(
             'categories',
             function ($q) use ($categoryId) {
-                $q
-                    ->where('categories.id', $categoryId)
-                    ->orWhere('categories.parent_id', $categoryId)
-                ;
+                $q->where('categories.id', $categoryId);
             }
         )->get();
+
+        $children = $this->categoryModel->find($categoryId)->children;
+
+        if ($children->isNotEmpty()) {
+            foreach($children as $child) {
+                $catId = $child->id;
+                $data = $this->searchByCategory($catId);
+                $result = $result->merge($data);
+            }
+        }
 
         return $result;
     }
